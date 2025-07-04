@@ -45,7 +45,8 @@ version = "^2.4"
 #features = ["nightly"]
 
 [features]
-profiler = ["cpuprofiler"]
+default = []
+unstable = []
 start_up = []
 
 [dev-dependencies]

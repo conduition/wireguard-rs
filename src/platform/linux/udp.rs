@@ -210,7 +210,9 @@ impl LinuxUDPReader {
             iov_base: buf.as_mut_ptr() as *mut core::ffi::c_void,
             iov_len: buf.len(),
         }];
+        #[allow(invalid_value)]
         let mut src: libc::sockaddr_in6 = unsafe { mem::MaybeUninit::uninit().assume_init() };
+        #[allow(invalid_value)]
         let mut control: ControlHeaderV6 = unsafe { mem::MaybeUninit::uninit().assume_init() };
         let mut hdr = libc::msghdr {
             msg_name: safe_cast(&mut src),
@@ -264,8 +266,12 @@ impl LinuxUDPReader {
             iov_base: buf.as_mut_ptr() as *mut core::ffi::c_void,
             iov_len: buf.len(),
         }];
+
+        #[allow(invalid_value)]
         let mut src: libc::sockaddr_in = unsafe { mem::MaybeUninit::uninit().assume_init() };
+        #[allow(invalid_value)]
         let mut control: ControlHeaderV4 = unsafe { mem::MaybeUninit::uninit().assume_init() };
+
         let mut hdr = libc::msghdr {
             msg_name: safe_cast(&mut src),
             msg_namelen: mem::size_of_val(&src) as u32,
