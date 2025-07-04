@@ -31,7 +31,7 @@ pub trait Writer: Send + Sync + 'static {
 pub trait Reader: Send + 'static {
     type Error: Error;
 
-    /// Reads an IP packet into dst[offset:] from the tunnel device
+    /// Reads an IP packet into `dst[offset:]` from the tunnel device
     ///
     /// The reason for providing space for a prefix
     /// is to efficiently accommodate platforms on which the packet is prefaced by a header.
