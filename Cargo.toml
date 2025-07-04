@@ -16,18 +16,18 @@ cpuprofiler = {version = "*", optional = true}
 crossbeam-channel = "^0.5"
 dashmap = "^4.0"
 digest = "^0.9"
-env_logger = "^0.8"
 generic-array = "^0.14"
 hex = "0.4"
 hjul = "0.2.2"
 hmac = "^0.10"
-log = {version = "0.4", features = ["max_level_trace", "release_max_level_info"]}
+log = "0.4"
 num_cpus = "^1.10"
-parking_lot = "^0.11"
 rand = "^0.7"
 rand_core = "^0.5"
 ring = "0.16"
 spin = "0.7"
+subtle = "^2.4"
+x25519-dalek = "^1.1"
 zerocopy = "0.3"
 
 [dependencies.treebitmap]
@@ -37,19 +37,13 @@ version = "0.5.0"
 [target.'cfg(unix)'.dependencies]
 libc = "^0.2"
 
-[dependencies.x25519-dalek]
-version = "^1.1"
-
-[dependencies.subtle]
-version = "^2.4"
-#features = ["nightly"]
-
 [features]
 default = []
 unstable = []
 start_up = []
 
 [dev-dependencies]
+env_logger = "^0.8"
 pnet = "^0.27"
 proptest = "^0.10"
 rand_chacha = "^0.2"
