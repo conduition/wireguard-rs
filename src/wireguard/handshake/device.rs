@@ -1,11 +1,11 @@
-use std::collections::hash_map;
 use std::collections::HashMap;
+use std::collections::hash_map;
 use std::net::SocketAddr;
 use std::sync::Mutex;
 
 use byteorder::{ByteOrder, LittleEndian};
-use dashmap::mapref::entry::Entry;
 use dashmap::DashMap;
+use dashmap::mapref::entry::Entry;
 use zerocopy::AsBytes;
 
 use rand::Rng;
@@ -462,7 +462,7 @@ impl<O> Device<O> {
     // Implemented via rejection sampling.
     fn allocate<R: RngCore + CryptoRng>(&self, rng: &mut R, pk: &PublicKey) -> u32 {
         loop {
-            let id = rng.gen();
+            let id = rng.r#gen();
 
             // read lock the shard and do quick check
             if self.id_map.contains_key(&id) {

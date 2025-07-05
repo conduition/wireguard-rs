@@ -3,9 +3,9 @@ extern crate test;
 
 use super::*;
 
+use std::sync::Arc;
 use std::sync::atomic::AtomicUsize;
 use std::sync::atomic::Ordering;
-use std::sync::Arc;
 
 // only used in benchmark
 #[cfg(feature = "unstable")]
@@ -321,7 +321,7 @@ fn bench_router_bidirectional(b: &mut Bencher) {
     // route packets in the other direction: peer1 -> peer2
     let mut sizes = vec![0, 1, 1500, MAX_SIZE_BODY];
     for _ in 0..100 {
-        let body_size: usize = rng.gen();
+        let body_size: usize = rng.r#gen();
         let body_size = body_size % MAX_SIZE_BODY;
         sizes.push(body_size);
     }
