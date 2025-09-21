@@ -5,6 +5,7 @@ license = "MIT"
 name = "wireguard"
 version = "0.2.0"
 description = "The Rust wireguard reference implementation, converted into a usable library."
+keywords = ["wireguard", "wg", "vpn", "p2p", "mesh"]
 
 [dependencies]
 aead = "^0.3"
