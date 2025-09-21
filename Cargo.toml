@@ -6,6 +6,9 @@ name = "wireguard"
 version = "0.2.0"
 description = "The Rust wireguard reference implementation, converted into a usable library."
 keywords = ["wireguard", "wg", "vpn", "p2p", "mesh"]
+homepage = "https://github.com/conduition/wireguard-rs"
+repository = "https://github.com/conduition/wireguard-rs"
+documentation = "https://docs.rs/wireguard/"
 
 [dependencies]
 aead = "^0.3"
