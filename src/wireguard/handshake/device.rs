@@ -1,11 +1,11 @@
-use std::collections::hash_map;
 use std::collections::HashMap;
+use std::collections::hash_map;
 use std::net::SocketAddr;
 use std::sync::Mutex;
 
 use byteorder::{ByteOrder, LittleEndian};
-use dashmap::mapref::entry::Entry;
 use dashmap::DashMap;
+use dashmap::mapref::entry::Entry;
 use zerocopy::AsBytes;
 
 use rand::Rng;
@@ -73,7 +73,7 @@ impl<O> Device<O> {
 
     /// Enables enumeration of (public key, opaque) pairs
     /// without exposing internal peer type.
-    pub fn iter(&self) -> Iter<O> {
+    pub fn iter(&self) -> Iter<'_, O> {
         Iter {
             iter: self.pk_map.iter(),
         }
