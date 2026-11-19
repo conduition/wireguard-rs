@@ -266,8 +266,20 @@ impl<O> Device<O> {
     ///
     /// * `id` - The (sender) id to release
     pub fn release(&self, id: u32) {
-        let old = self.id_map.remove(&id);
-        assert!(old.is_some(), "released id not allocated");
+        // The id table is an index from local handshake id to peer, used to
+        // demultiplex handshake responses and cookie replies. It is not an
+        // ownership record: the same id can be released by both the handshake
+        // state and the key-wheel rotation that retires the keypair, so a
+        // missing entry is not an error.
+        //
+        // This used to be `assert!(old.is_some(), "released id not allocated")`.
+        // The assertion fires in production a few times a day, and the panic
+        // kills a handshake worker. Nothing supervises those: each occurrence
+        // permanently removes one worker, and with one worker per CPU the
+        // device eventually cannot complete any handshake at all.
+        if self.id_map.remove(&id).is_none() {
+            log::warn!("release of handshake id {id} which was not allocated (ignored)");
+        }
     }
 
     /// Begin a new handshake
